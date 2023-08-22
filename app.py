@@ -46,4 +46,4 @@ def legislator_details(bioguide_id):
     return render_template('legislator_details.html', legislator_details=legislator_details, top_donors=top_donors)
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5000)
