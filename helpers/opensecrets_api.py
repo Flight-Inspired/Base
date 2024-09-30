@@ -2,6 +2,7 @@
 import json, os, requests, sqlite3
 import xml.etree.ElementTree as ET
 from dotenv import load_dotenv
+from mysql_util import get_connection
 
 load_dotenv()
 api_key = os.getenv("OPENSECRETS_API_KEY")
@@ -50,7 +51,7 @@ def insert_legislators_for_all_states():
 # Insert state legislator data into the database
 def insert_legislators(data):
     try:
-        conn = sqlite3.connect("legislators.db")
+        conn = get_connection() # sqlite3.connect("legislators.db")
         c = conn.cursor()
 
         for legislator in data:

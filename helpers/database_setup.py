@@ -1,9 +1,10 @@
 #database_setup.py
 import sqlite3
+from helpers.mysql_util import get_connection
 
 def setup_database():
     try:
-        conn = sqlite3.connect('legislators.db')
+        conn = get_connection() # sqlite3.connect('legislators.db')
         c = conn.cursor()
 
         # Create the current_legislators table (if not exists)
@@ -95,10 +96,16 @@ def setup_database():
         conn.commit()
         conn.close()
         print("Database setup completed.")
-    except sqlite3.Error as e:
+    except Exception as e:
         print(f"Error setting up the database: {e}")
     except Exception as e:
         print(f"An error occurred: {e}")
+
+def temp_populate_mysql():
+    mysql_conn = get_connection() # sqlite3.connect('legislators.db')
+    slite_conn = sqlite3.connect('legislators.db')
+    
+
 
 if __name__ == "__main__":
     setup_database()

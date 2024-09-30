@@ -1,8 +1,9 @@
 #search.py
 import sqlite3
+from  helpers.mysql_util import get_connection
 
 def search_legislators_by_state(state_code):
-    conn = sqlite3.connect("legislators.db")
+    conn = get_connection() # sqlite3.connect("legislators.db")
     c = conn.cursor()
 
     state_code = f'%{state_code}%'
@@ -22,7 +23,7 @@ def search_legislators_by_state(state_code):
 
 def get_top_donors(bioguide_id):
     try:
-        conn = sqlite3.connect('legislators.db')
+        conn = get_connection() # sqlite3.connect('legislators.db')
         c = conn.cursor()
 
         # Fetch the associated cid using the provided bioguide_id
